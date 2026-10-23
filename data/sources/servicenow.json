@@ -1,0 +1,37 @@
+[
+  {
+    "number": "INC1001001",
+    "short_description": "VPN access fails after certificate renewal",
+    "description": "Several employees cannot connect to the corporate VPN after a certificate rotation. Reinstalling the client did not help. The network team is validating the updated trust chain.",
+    "state": "In Progress",
+    "priority": "2 - High",
+    "assigned_to": "alex.chen",
+    "opened_at": "2026-02-12T09:15:00-05:00",
+    "sys_updated_on": "2026-02-12T15:30:00Z",
+    "url": "https://example.invalid/servicenow/INC1001001",
+    "acl": ["group:it-support"]
+  },
+  {
+    "number": "INC1001002",
+    "short_description": "Password reset emails arrive late",
+    "description": "Password reset messages are delayed for a small group of test accounts. Mail queue metrics are being reviewed.",
+    "state": "New",
+    "priority": "3 - Moderate",
+    "assigned_to": null,
+    "opened_at": "2026-02-13T11:00:00Z",
+    "sys_updated_on": "2026-02-13T11:00:00Z",
+    "url": "https://example.invalid/servicenow/INC1001002"
+  },
+  {
+    "number": "INC1001003",
+    "short_description": "Build agent disk usage alert",
+    "description": "A staging build agent is approaching its disk threshold after retaining old workspace files. The developer tools team is reviewing cleanup settings.",
+    "state": "Resolved",
+    "priority": "4 - Low",
+    "assigned_to": "riley.park",
+    "opened_at": "2026-02-08T07:40:00Z",
+    "sys_updated_on": "2026-02-09T13:10:00Z",
+    "url": "https://example.invalid/servicenow/INC1001003",
+    "acl": ["group:developer-tools"]
+  }
+]

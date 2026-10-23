@@ -1,0 +1,43 @@
+[
+  {
+    "key": "PROJ-123",
+    "issue_type": "Bug",
+    "summary": "Login fails after SSO callback",
+    "description": "After a successful single sign-on callback, the application redirects some users to the login page again. The identity team observed stale state in the token cache. Clearing the cache restores access while a fix is prepared.",
+    "status": "Done",
+    "priority": "High",
+    "assignee": "jane.doe",
+    "created": "2026-01-10T00:00:00Z",
+    "updated": "2026-01-21T00:00:00Z",
+    "url": "https://example.invalid/jira/PROJ-123",
+    "acl": ["group:eng-platform"],
+    "components": ["identity", "web"]
+  },
+  {
+    "key": "PROJ-124",
+    "issue_type": "Task",
+    "summary": "Add retry metrics to the worker",
+    "description": "Expose a counter for transient worker retries and add a dashboard panel for the staging environment.",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "sam.taylor",
+    "created": "2026-02-02T12:00:00Z",
+    "updated": "2026-02-14T09:20:00Z",
+    "url": "https://example.invalid/jira/PROJ-124",
+    "acl": ["group:eng-platform"],
+    "components": ["worker"]
+  },
+  {
+    "key": "PROJ-125",
+    "issue_type": "Story",
+    "summary": "Document the staging rollback procedure",
+    "description": "Add a concise rollback guide for the staging deployment process and link it from the release checklist.",
+    "status": "To Do",
+    "priority": "Low",
+    "assignee": null,
+    "created": "2026-02-15T10:00:00Z",
+    "updated": "2026-02-15T10:00:00Z",
+    "url": "https://example.invalid/jira/PROJ-125",
+    "components": ["release"]
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "KB-410",
+    "title": "Rotating service credentials safely",
+    "body": "This runbook describes how to rotate a service credential without interrupting dependent applications. Notify service owners, create the replacement secret, update the staging integration, verify health checks, then rotate production consumers in small batches. Never include secret values in tickets or logs.",
+    "space": "Platform Engineering",
+    "status": "current",
+    "owner": "platform.docs",
+    "created_at": "2026-01-20T14:00:00Z",
+    "updated_at": "2026-02-08T10:30:00Z",
+    "url": "https://example.invalid/confluence/KB-410",
+    "acl": ["group:platform-engineering"],
+    "labels": ["runbook", "credentials"]
+  },
+  {
+    "id": "KB-411",
+    "title": "On-call handoff checklist",
+    "body": "At the end of a shift, review active incidents, record current mitigations, link relevant dashboards, and call out any scheduled maintenance. The incoming responder confirms ownership of open work.",
+    "space": "Operations",
+    "status": "draft",
+    "owner": "ops.docs",
+    "created_at": "2026-02-01T08:00:00Z",
+    "updated_at": "2026-02-10T16:45:00Z",
+    "url": "https://example.invalid/confluence/KB-411",
+    "labels": ["operations"]
+  },
+  {
+    "id": "KB-412",
+    "title": "Staging deployment validation",
+    "body": "After a staging deployment, verify the health endpoint, smoke-test the primary workflow, and review application error rates. Record the build identifier and any unexpected behavior before promoting the release.",
+    "space": "Release Engineering",
+    "status": "current",
+    "owner": "release.docs",
+    "created_at": "2026-01-28T12:15:00Z",
+    "updated_at": "2026-02-11T09:00:00Z",
+    "url": "https://example.invalid/confluence/KB-412",
+    "acl": ["group:release-engineering"],
+    "labels": ["deployment", "staging"]
+  }
+]

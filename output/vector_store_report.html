@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Normalization POC - Run Report</title>
+  <style>
+    :root { color-scheme: light; --ink:#18313b; --muted:#60737b; --line:#d8e3e6; --teal:#078b89; --paper:#f4f8f8; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 "Segoe UI",Arial,sans-serif; }
+    header { padding:38px max(24px,calc((100vw - 1120px)/2)); background:#12323b; color:white; }
+    header h1 { margin:0 0 6px; font-size:30px; }
+    header p { margin:0; color:#c5d7db; }
+    main { max-width:1120px; margin:28px auto; padding:0 20px 50px; }
+    h2 { margin:30px 0 14px; font-size:21px; }
+    .provider { display:inline-block; margin-top:16px; padding:5px 10px; border:1px solid #7cc7c2; border-radius:20px; color:#d3fffb; font-size:13px; }
+    .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:12px; }
+    .metric { padding:16px; border:1px solid var(--line); border-radius:10px; background:white; }
+    .metric span { display:block; color:var(--muted); font-size:13px; }
+    .metric strong { display:block; margin-top:5px; font-size:26px; }
+    .panel { overflow:hidden; border:1px solid var(--line); border-radius:10px; background:white; }
+    table { width:100%; border-collapse:collapse; text-align:left; }
+    th,td { padding:12px 16px; border-bottom:1px solid var(--line); }
+    thead { background:#eaf2f3; }
+    .record { margin:10px 0; border:1px solid var(--line); border-radius:10px; background:white; }
+    .record > summary { display:flex; align-items:center; flex-wrap:wrap; gap:9px; padding:14px 16px; cursor:pointer; list-style:none; }
+    .record > summary::-webkit-details-marker { display:none; }
+    .record-title { font-weight:650; }
+    .record-key { margin-left:auto; color:var(--muted); font:13px Consolas,monospace; }
+    .badge { padding:2px 8px; border-radius:20px; background:#d9f2ef; color:#075d5b; font-size:12px; }
+    .badge.muted { background:#edf1f3; color:#52636a; }
+    .record-body { padding:0 16px 16px; }
+    .metadata { display:grid; grid-template-columns:150px 1fr; gap:5px 14px; margin:14px 0; }
+    .metadata dt { color:var(--muted); }
+    .metadata dd { margin:0; overflow-wrap:anywhere; }
+    .chunk { margin-top:12px; padding:14px; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:8px; }
+    .chunk-heading { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .chunk-heading span,.context { color:var(--muted); font-size:13px; }
+    .context { padding:8px 10px; background:#f3f8f8; border-radius:5px; }
+    .chunk h4 { margin:10px 0 3px; }
+    .chunk p { overflow-wrap:anywhere; }
+    .chunk details { margin-top:10px; }
+    summary { cursor:pointer; }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; margin:0; }
+    code { overflow-wrap:anywhere; }
+    .note { color:var(--muted); font-size:13px; }
+    footer { padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    @media(max-width:600px) { .metadata { grid-template-columns:1fr; gap:1px; } .metadata dd { margin-bottom:8px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Normalization POC — Run Report</h1>
+    <p>Multi-source ingestion, normalization, enrichment, chunking, and local vectorization</p>
+    <span class="provider">Provider: deterministic-mock · offline mock, not a real LLM</span>
+  </header>
+  <main>
+    <p class="note">Generated 2026-10-23 07:06:03 UTC. Unchanged records can reuse enrichment cached by content hash.</p>
+    <h2>Run summary</h2>
+    <section class="metrics" aria-label="Run metrics"><div class="metric"><span>Records read</span><strong>9</strong></div><div class="metric"><span>Enrichment cache hits</span><strong>9</strong></div><div class="metric"><span>Records enriched</span><strong>0</strong></div><div class="metric"><span>Chunks created</span><strong>0</strong></div><div class="metric"><span>Chunks updated</span><strong>0</strong></div><div class="metric"><span>Chunks removed</span><strong>0</strong></div><div class="metric"><span>Chunks in vector store</span><strong>9</strong></div></section>
+    <h2>Source breakdown</h2>
+    <div class="panel">
+      <table>
+        <thead><tr><th>Source</th><th>Records read</th><th>Stored chunks</th><th>Object types</th></tr></thead>
+        <tbody>
+            <tr>
+              <th scope="row">Confluence</th>
+              <td>3</td>
+              <td>3</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <th scope="row">Jira</th>
+              <td>3</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <th scope="row">Servicenow</th>
+              <td>3</td>
+              <td>3</td>
+              <td>1</td>
+            </tr></tbody>
+      </table>
+    </div>
+    <h2>Normalized records and chunks</h2>
+    
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Rotating service credentials safely</span>
+                <span class="badge">confluence</span>
+                <span class="badge muted">page</span>
+                <span class="record-key">confluence:KB-410</span>
+              </summary>
+              <div class="record-body">
+                <p>Rotating service credentials safely This runbook describes how to rotate a service credential without interrupting dependent applications. Notify service owners, create the replacement secret, update the staging integration, verify...</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>resolved</dd>
+                  <dt>Priority</dt><dd>—</dd>
+                  <dt>Owner</dt><dd>platform.docs</dd>
+                  <dt>Created</dt><dd>2026-01-20T14:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-08T10:30:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Never&#x27;, &#x27;Notify&#x27;, &#x27;Rotating&#x27;, &#x27;This&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>confluence:KB-410#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Confluence - confluence:KB-410 - Rotating service credentials safely - resolved</p>
+                  <h4>Chunk content</h4>
+                  <p>This runbook describes how to rotate a service credential without interrupting dependent applications. Notify service owners, create the replacement secret, update the staging integration, verify health checks, then rotate production consumers in small batches. Never include secret values in tickets or logs.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:dcce445b0e41723687ec02c914c700b6b0e77eaed9d50aa00ebdb552638116bb</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/confluence/KB-410</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:platform-engineering&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:platform-engineering&#x27;], &#x27;body&#x27;: &#x27;This runbook describes how to rotate a service credential without interrupting dependent applications. Notify service owners, create the replacement secret, update the staging integration, verify health checks, then rotate production consumers in small batches. Never include secret values in tickets or logs.&#x27;, &#x27;created_at&#x27;: &#x27;2026-01-20T14:00:00Z&#x27;, &#x27;id&#x27;: &#x27;KB-410&#x27;, &#x27;labels&#x27;: [&#x27;runbook&#x27;, &#x27;credentials&#x27;], &#x27;owner&#x27;: &#x27;platform.docs&#x27;, &#x27;space&#x27;: &#x27;Platform Engineering&#x27;, &#x27;status&#x27;: &#x27;current&#x27;, &#x27;title&#x27;: &#x27;Rotating service credentials safely&#x27;, &#x27;updated_at&#x27;: &#x27;2026-02-08T10:30:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/confluence/KB-410&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, 0.0, -0.28571429, 0.14285714, 0.14285714, 0.0, 0.0, 0.0, -0.14285714, 0.0, 0.0, 0.0, 0.14285714, 0.0, -0.28571429, 0.0, 0.0, 0.0, 0.14285714, -0.42857143, 0.14285714, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.28571429, 0.0, 0.0, 0.0, -0.14285714, 0.14285714, 0.0, 0.14285714, -0.14285714, 0.0, 0.28571429, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.14285714, -0.14285714, 0.0, 0.0, -0.14285714, 0.0, 0.14285714, 0.14285714, 0.0, 0.0, 0.0, -0.14285714, 0.0, 0.0, -0.28571429, 0.0, -0.28571429]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">On-call handoff checklist</span>
+                <span class="badge">confluence</span>
+                <span class="badge muted">page</span>
+                <span class="record-key">confluence:KB-411</span>
+              </summary>
+              <div class="record-body">
+                <p>On-call handoff checklist At the end of a shift, review active incidents, record current mitigations, link relevant dashboards, and call out any scheduled maintenance. The incoming responder confirms ownership of open work.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>open</dd>
+                  <dt>Priority</dt><dd>—</dd>
+                  <dt>Owner</dt><dd>ops.docs</dd>
+                  <dt>Created</dt><dd>2026-02-01T08:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-10T16:45:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;On-call&#x27;, &#x27;The&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>confluence:KB-411#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Confluence - confluence:KB-411 - On-call handoff checklist - open</p>
+                  <h4>Chunk content</h4>
+                  <p>At the end of a shift, review active incidents, record current mitigations, link relevant dashboards, and call out any scheduled maintenance. The incoming responder confirms ownership of open work.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:6aa29fb6d532b6168808737c230f2235feff8f870a4cdc7ac82f23ff6ba070e2</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/confluence/KB-411</dd>
+                      <dt>ACL metadata</dt><dd>[]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;body&#x27;: &#x27;At the end of a shift, review active incidents, record current mitigations, link relevant dashboards, and call out any scheduled maintenance. The incoming responder confirms ownership of open work.&#x27;, &#x27;created_at&#x27;: &#x27;2026-02-01T08:00:00Z&#x27;, &#x27;id&#x27;: &#x27;KB-411&#x27;, &#x27;labels&#x27;: [&#x27;operations&#x27;], &#x27;owner&#x27;: &#x27;ops.docs&#x27;, &#x27;space&#x27;: &#x27;Operations&#x27;, &#x27;status&#x27;: &#x27;draft&#x27;, &#x27;title&#x27;: &#x27;On-call handoff checklist&#x27;, &#x27;updated_at&#x27;: &#x27;2026-02-10T16:45:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/confluence/KB-411&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, 0.0, 0.14433757, 0.28867513, 0.0, -0.14433757, -0.14433757, 0.0, 0.0, -0.14433757, 0.0, 0.0, -0.14433757, 0.0, -0.28867513, 0.28867513, 0.14433757, -0.14433757, 0.14433757, 0.0, 0.0, -0.14433757, 0.0, 0.0, 0.28867513, 0.0, 0.14433757, -0.4330127, 0.0, 0.0, 0.0, 0.14433757, 0.14433757, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.14433757, -0.14433757, 0.0, 0.0, 0.0, 0.0, 0.14433757, 0.0, 0.0, 0.0, 0.0, 0.14433757, 0.0, 0.0, 0.0, 0.14433757, 0.0, 0.0, 0.14433757, 0.0, -0.28867513, 0.14433757, 0.0]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Staging deployment validation</span>
+                <span class="badge">confluence</span>
+                <span class="badge muted">page</span>
+                <span class="record-key">confluence:KB-412</span>
+              </summary>
+              <div class="record-body">
+                <p>Staging deployment validation After a staging deployment, verify the health endpoint, smoke-test the primary workflow, and review application error rates. Record the build identifier and any unexpected behavior before promoting the release.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>resolved</dd>
+                  <dt>Priority</dt><dd>—</dd>
+                  <dt>Owner</dt><dd>release.docs</dd>
+                  <dt>Created</dt><dd>2026-01-28T12:15:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-11T09:00:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;After&#x27;, &#x27;Record&#x27;, &#x27;Staging&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>confluence:KB-412#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Confluence - confluence:KB-412 - Staging deployment validation - resolved</p>
+                  <h4>Chunk content</h4>
+                  <p>After a staging deployment, verify the health endpoint, smoke-test the primary workflow, and review application error rates. Record the build identifier and any unexpected behavior before promoting the release.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:884fd7cecc5c7ab7177f07dc4d89e66e60debce80cf329c69bdebf4c9008de77</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/confluence/KB-412</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:release-engineering&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:release-engineering&#x27;], &#x27;body&#x27;: &#x27;After a staging deployment, verify the health endpoint, smoke-test the primary workflow, and review application error rates. Record the build identifier and any unexpected behavior before promoting the release.&#x27;, &#x27;created_at&#x27;: &#x27;2026-01-28T12:15:00Z&#x27;, &#x27;id&#x27;: &#x27;KB-412&#x27;, &#x27;labels&#x27;: [&#x27;deployment&#x27;, &#x27;staging&#x27;], &#x27;owner&#x27;: &#x27;release.docs&#x27;, &#x27;space&#x27;: &#x27;Release Engineering&#x27;, &#x27;status&#x27;: &#x27;current&#x27;, &#x27;title&#x27;: &#x27;Staging deployment validation&#x27;, &#x27;updated_at&#x27;: &#x27;2026-02-11T09:00:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/confluence/KB-412&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, 0.0, -0.13130643, 0.0, 0.0, 0.0, 0.0, 0.0, -0.13130643, 0.0, 0.0, -0.13130643, -0.13130643, 0.13130643, -0.26261287, 0.13130643, 0.0, 0.0, 0.26261287, 0.26261287, 0.0, 0.0, 0.0, 0.0, 0.3939193, 0.0, 0.13130643, -0.13130643, 0.0, 0.0, 0.0, 0.26261287, -0.13130643, 0.0, 0.13130643, 0.0, 0.0, 0.0, 0.0, -0.13130643, 0.0, 0.0, -0.13130643, 0.0, -0.13130643, 0.0, 0.0, 0.0, 0.0, -0.13130643, 0.0, 0.0, 0.0, 0.13130643, 0.0, 0.0, 0.0, 0.13130643, 0.0, 0.0, 0.0, -0.52522573, 0.0, -0.13130643]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Login fails after SSO callback</span>
+                <span class="badge">jira</span>
+                <span class="badge muted">bug</span>
+                <span class="record-key">jira:PROJ-123</span>
+              </summary>
+              <div class="record-body">
+                <p>Login fails after SSO callback After a successful single sign-on callback, the application redirects some users to the login page again. The identity team observed stale state in the token cache. Clearing the cache restores access while...</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>resolved</dd>
+                  <dt>Priority</dt><dd>high</dd>
+                  <dt>Owner</dt><dd>jane.doe</dd>
+                  <dt>Created</dt><dd>2026-01-10T00:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-01-21T00:00:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;After&#x27;, &#x27;Clearing&#x27;, &#x27;Login&#x27;, &#x27;SSO&#x27;, &#x27;The&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>jira:PROJ-123#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Jira - jira:PROJ-123 - Login fails after SSO callback - resolved</p>
+                  <h4>Chunk content</h4>
+                  <p>After a successful single sign-on callback, the application redirects some users to the login page again. The identity team observed stale state in the token cache. Clearing the cache restores access while a fix is prepared.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:1567d9502ed0fe182a36f757aecdcc57c499f734ccb0bfe7034514fd2aae99c1</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/jira/PROJ-123</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:eng-platform&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:eng-platform&#x27;], &#x27;assignee&#x27;: &#x27;jane.doe&#x27;, &#x27;components&#x27;: [&#x27;identity&#x27;, &#x27;web&#x27;], &#x27;created&#x27;: &#x27;2026-01-10T00:00:00Z&#x27;, &#x27;description&#x27;: &#x27;After a successful single sign-on callback, the application redirects some users to the login page again. The identity team observed stale state in the token cache. Clearing the cache restores access while a fix is prepared.&#x27;, &#x27;issue_type&#x27;: &#x27;Bug&#x27;, &#x27;key&#x27;: &#x27;PROJ-123&#x27;, &#x27;priority&#x27;: &#x27;High&#x27;, &#x27;status&#x27;: &#x27;Done&#x27;, &#x27;summary&#x27;: &#x27;Login fails after SSO callback&#x27;, &#x27;updated&#x27;: &#x27;2026-01-21T00:00:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/jira/PROJ-123&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[-0.19900744, 0.0, -0.09950372, 0.0, 0.0, -0.09950372, 0.09950372, 0.09950372, 0.0, -0.09950372, 0.0, 0.0, 0.09950372, 0.0, 0.0, 0.0, -0.19900744, 0.0, 0.19900744, -0.09950372, 0.0, 0.0, -0.09950372, -0.19900744, 0.0, 0.09950372, 0.09950372, 0.0, -0.09950372, 0.09950372, 0.0, 0.0, 0.09950372, 0.0, -0.09950372, 0.0, 0.0, 0.0, 0.0, -0.09950372, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.09950372, 0.0, 0.0, 0.0, 0.0, 0.0, 0.09950372, 0.39801488, -0.09950372, -0.29851116, 0.0, 0.19900744, 0.09950372, 0.0, 0.0, -0.59702231, 0.0, -0.09950372]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Add retry metrics to the worker</span>
+                <span class="badge">jira</span>
+                <span class="badge muted">task</span>
+                <span class="record-key">jira:PROJ-124</span>
+              </summary>
+              <div class="record-body">
+                <p>Add retry metrics to the worker Expose a counter for transient worker retries and add a dashboard panel for the staging environment.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>in_progress</dd>
+                  <dt>Priority</dt><dd>medium</dd>
+                  <dt>Owner</dt><dd>sam.taylor</dd>
+                  <dt>Created</dt><dd>2026-02-02T12:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-14T09:20:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Add&#x27;, &#x27;Expose&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>jira:PROJ-124#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Jira - jira:PROJ-124 - Add retry metrics to the worker - in_progress</p>
+                  <h4>Chunk content</h4>
+                  <p>Expose a counter for transient worker retries and add a dashboard panel for the staging environment.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:c8107400ff2ecf5e0c5af65cb353c7ac75a9627a51726d9daf8ec790a810e8cc</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/jira/PROJ-124</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:eng-platform&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:eng-platform&#x27;], &#x27;assignee&#x27;: &#x27;sam.taylor&#x27;, &#x27;components&#x27;: [&#x27;worker&#x27;], &#x27;created&#x27;: &#x27;2026-02-02T12:00:00Z&#x27;, &#x27;description&#x27;: &#x27;Expose a counter for transient worker retries and add a dashboard panel for the staging environment.&#x27;, &#x27;issue_type&#x27;: &#x27;Task&#x27;, &#x27;key&#x27;: &#x27;PROJ-124&#x27;, &#x27;priority&#x27;: &#x27;Medium&#x27;, &#x27;status&#x27;: &#x27;In Progress&#x27;, &#x27;summary&#x27;: &#x27;Add retry metrics to the worker&#x27;, &#x27;updated&#x27;: &#x27;2026-02-14T09:20:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/jira/PROJ-124&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, -0.15249857, 0.0, -0.30499714, 0.0, 0.0, 0.0, -0.15249857, 0.15249857, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.30499714, 0.0, 0.0, 0.30499714, 0.15249857, 0.0, 0.0, -0.15249857, 0.0, 0.0, 0.0, 0.0, -0.15249857, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.30499714, 0.0, 0.0, -0.15249857, 0.15249857, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.30499714, 0.0, 0.0, 0.0, 0.0, 0.30499714, 0.0, 0.0, 0.0, -0.30499714, 0.15249857, 0.0, 0.15249857, 0.0, 0.0, -0.30499714, 0.0, -0.15249857]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Document the staging rollback procedure</span>
+                <span class="badge">jira</span>
+                <span class="badge muted">story</span>
+                <span class="record-key">jira:PROJ-125</span>
+              </summary>
+              <div class="record-body">
+                <p>Document the staging rollback procedure Add a concise rollback guide for the staging deployment process and link it from the release checklist.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>open</dd>
+                  <dt>Priority</dt><dd>low</dd>
+                  <dt>Owner</dt><dd>—</dd>
+                  <dt>Created</dt><dd>2026-02-15T10:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-15T10:00:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Add&#x27;, &#x27;Document&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>jira:PROJ-125#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Jira - jira:PROJ-125 - Document the staging rollback procedure - open</p>
+                  <h4>Chunk content</h4>
+                  <p>Add a concise rollback guide for the staging deployment process and link it from the release checklist.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:7f161d3d6846c96011a7f8225c0ae7cea98f127ac3d3bebcd1bbd0bd21838fb9</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/jira/PROJ-125</dd>
+                      <dt>ACL metadata</dt><dd>[]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;assignee&#x27;: None, &#x27;components&#x27;: [&#x27;release&#x27;], &#x27;created&#x27;: &#x27;2026-02-15T10:00:00Z&#x27;, &#x27;description&#x27;: &#x27;Add a concise rollback guide for the staging deployment process and link it from the release checklist.&#x27;, &#x27;issue_type&#x27;: &#x27;Story&#x27;, &#x27;key&#x27;: &#x27;PROJ-125&#x27;, &#x27;priority&#x27;: &#x27;Low&#x27;, &#x27;status&#x27;: &#x27;To Do&#x27;, &#x27;summary&#x27;: &#x27;Document the staging rollback procedure&#x27;, &#x27;updated&#x27;: &#x27;2026-02-15T10:00:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/jira/PROJ-125&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, 0.0, 0.0, -0.13736056, -0.13736056, -0.13736056, 0.0, 0.0, 0.0, -0.13736056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.41208169, 0.0, 0.0, 0.13736056, 0.27472113, 0.0, 0.0, 0.0, 0.0, 0.27472113, 0.0, 0.0, -0.27472113, 0.0, 0.0, 0.0, -0.13736056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.13736056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.13736056, 0.0, 0.0, -0.41208169, 0.0, 0.0, 0.27472113, 0.0, 0.0, -0.41208169, 0.13736056, 0.13736056]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">VPN access fails after certificate renewal</span>
+                <span class="badge">servicenow</span>
+                <span class="badge muted">incident</span>
+                <span class="record-key">servicenow:INC1001001</span>
+              </summary>
+              <div class="record-body">
+                <p>VPN access fails after certificate renewal Several employees cannot connect to the corporate VPN after a certificate rotation. Reinstalling the client did not help. The network team is validating the updated trust chain.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>in_progress</dd>
+                  <dt>Priority</dt><dd>high</dd>
+                  <dt>Owner</dt><dd>alex.chen</dd>
+                  <dt>Created</dt><dd>2026-02-12T14:15:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-12T15:30:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Reinstalling&#x27;, &#x27;Several&#x27;, &#x27;The&#x27;, &#x27;VPN&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>servicenow:INC1001001#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Servicenow - servicenow:INC1001001 - VPN access fails after certificate renewal - in_progress</p>
+                  <h4>Chunk content</h4>
+                  <p>Several employees cannot connect to the corporate VPN after a certificate rotation. Reinstalling the client did not help. The network team is validating the updated trust chain.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:67c8fc2afdb1839d35fa51636f27366b9e30d36845f2085e16d0780600e89d81</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/servicenow/INC1001001</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:it-support&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:it-support&#x27;], &#x27;assigned_to&#x27;: &#x27;alex.chen&#x27;, &#x27;description&#x27;: &#x27;Several employees cannot connect to the corporate VPN after a certificate rotation. Reinstalling the client did not help. The network team is validating the updated trust chain.&#x27;, &#x27;number&#x27;: &#x27;INC1001001&#x27;, &#x27;opened_at&#x27;: &#x27;2026-02-12T09:15:00-05:00&#x27;, &#x27;priority&#x27;: &#x27;2 - High&#x27;, &#x27;short_description&#x27;: &#x27;VPN access fails after certificate renewal&#x27;, &#x27;state&#x27;: &#x27;In Progress&#x27;, &#x27;sys_updated_on&#x27;: &#x27;2026-02-12T15:30:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/servicenow/INC1001001&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.12803688, -0.12803688, 0.12803688, 0.12803688, 0.0, 0.0, 0.0, 0.0, 0.0, -0.12803688, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.12803688, 0.12803688, 0.12803688, 0.0, 0.0, -0.12803688, -0.38411064, 0.0, 0.0, 0.0, 0.12803688, 0.0, 0.0, 0.0, 0.0, -0.12803688, 0.0, 0.0, 0.12803688, 0.0, 0.0, 0.0, 0.0, -0.12803688, 0.0, 0.0, 0.0, 0.12803688, 0.0, 0.0, -0.12803688, -0.25607376, 0.0, 0.12803688, 0.12803688, 0.0, 0.0, 0.0, -0.38411064, 0.0, 0.0, 0.25607376, 0.0, -0.12803688, 0.0, -0.51214752, 0.0, -0.12803688]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Password reset emails arrive late</span>
+                <span class="badge">servicenow</span>
+                <span class="badge muted">incident</span>
+                <span class="record-key">servicenow:INC1001002</span>
+              </summary>
+              <div class="record-body">
+                <p>Password reset emails arrive late Password reset messages are delayed for a small group of test accounts. Mail queue metrics are being reviewed.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>open</dd>
+                  <dt>Priority</dt><dd>medium</dd>
+                  <dt>Owner</dt><dd>—</dd>
+                  <dt>Created</dt><dd>2026-02-13T11:00:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-13T11:00:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Mail&#x27;, &#x27;Password&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>servicenow:INC1001002#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Servicenow - servicenow:INC1001002 - Password reset emails arrive late - open</p>
+                  <h4>Chunk content</h4>
+                  <p>Password reset messages are delayed for a small group of test accounts. Mail queue metrics are being reviewed.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:24041aa900bff6e744a302993971704149d8053a64237735df17cbfd3687bd93</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/servicenow/INC1001002</dd>
+                      <dt>ACL metadata</dt><dd>[]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;assigned_to&#x27;: None, &#x27;description&#x27;: &#x27;Password reset messages are delayed for a small group of test accounts. Mail queue metrics are being reviewed.&#x27;, &#x27;number&#x27;: &#x27;INC1001002&#x27;, &#x27;opened_at&#x27;: &#x27;2026-02-13T11:00:00Z&#x27;, &#x27;priority&#x27;: &#x27;3 - Moderate&#x27;, &#x27;short_description&#x27;: &#x27;Password reset emails arrive late&#x27;, &#x27;state&#x27;: &#x27;New&#x27;, &#x27;sys_updated_on&#x27;: &#x27;2026-02-13T11:00:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/servicenow/INC1001002&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.16012815, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.16012815, 0.16012815, 0.0, 0.0, -0.32025631, 0.0, 0.64051262, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.16012815, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.16012815, -0.16012815, 0.0, -0.32025631, 0.0, 0.0, 0.0, -0.16012815, 0.0, 0.0, 0.0, 0.32025631, 0.0, 0.32025631, 0.0, 0.0]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+            <details class="record" open>
+              <summary>
+                <span class="record-title">Build agent disk usage alert</span>
+                <span class="badge">servicenow</span>
+                <span class="badge muted">incident</span>
+                <span class="record-key">servicenow:INC1001003</span>
+              </summary>
+              <div class="record-body">
+                <p>Build agent disk usage alert A staging build agent is approaching its disk threshold after retaining old workspace files. The developer tools team is reviewing cleanup settings.</p>
+                <dl class="metadata">
+                  <dt>Status</dt><dd>resolved</dd>
+                  <dt>Priority</dt><dd>low</dd>
+                  <dt>Owner</dt><dd>riley.park</dd>
+                  <dt>Created</dt><dd>2026-02-08T07:40:00Z</dd>
+                  <dt>Updated</dt><dd>2026-02-09T13:10:00Z</dd>
+                  <dt>Entities</dt><dd>[&#x27;Build&#x27;, &#x27;The&#x27;]</dd>
+                  <dt>Chunks</dt><dd>1</dd>
+                </dl>
+                
+                <article class="chunk">
+                  <div class="chunk-heading">
+                    <strong>servicenow:INC1001003#chunk-0</strong>
+                    <span>64-dimension embedding</span>
+                  </div>
+                  <p class="context">Servicenow - servicenow:INC1001003 - Build agent disk usage alert - resolved</p>
+                  <h4>Chunk content</h4>
+                  <p>A staging build agent is approaching its disk threshold after retaining old workspace files. The developer tools team is reviewing cleanup settings.</p>
+                  <details>
+                    <summary>Vectorized canonical metadata</summary>
+                    <dl class="metadata">
+                      <dt>Chunk index</dt><dd>0</dd>
+                      <dt>Content hash</dt><dd><code>sha256:5411bb318f20ca4527a9d85fed11b8f9c4e387e0bf28780792f2df3800739a89</code></dd>
+                      <dt>Source URL</dt><dd>https://example.invalid/servicenow/INC1001003</dd>
+                      <dt>ACL metadata</dt><dd>[&#x27;group:developer-tools&#x27;]</dd>
+                      <dt>Source fields</dt><dd><pre>{&#x27;acl&#x27;: [&#x27;group:developer-tools&#x27;], &#x27;assigned_to&#x27;: &#x27;riley.park&#x27;, &#x27;description&#x27;: &#x27;A staging build agent is approaching its disk threshold after retaining old workspace files. The developer tools team is reviewing cleanup settings.&#x27;, &#x27;number&#x27;: &#x27;INC1001003&#x27;, &#x27;opened_at&#x27;: &#x27;2026-02-08T07:40:00Z&#x27;, &#x27;priority&#x27;: &#x27;4 - Low&#x27;, &#x27;short_description&#x27;: &#x27;Build agent disk usage alert&#x27;, &#x27;state&#x27;: &#x27;Resolved&#x27;, &#x27;sys_updated_on&#x27;: &#x27;2026-02-09T13:10:00Z&#x27;, &#x27;url&#x27;: &#x27;https://example.invalid/servicenow/INC1001003&#x27;}</pre></dd>
+                    </dl>
+                    <details>
+                      <summary>Show embedding values</summary>
+                      <pre>[-0.15617376, 0.0, -0.15617376, -0.15617376, 0.0, 0.0, 0.0, 0.31234752, 0.0, -0.31234752, 0.15617376, 0.0, 0.0, 0.15617376, -0.15617376, 0.0, -0.15617376, 0.0, 0.15617376, 0.15617376, 0.0, 0.0, -0.46852129, 0.15617376, -0.15617376, 0.0, -0.31234752, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.15617376, 0.0, 0.0, -0.31234752, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.15617376, 0.15617376, 0.0, 0.0, 0.0, 0.15617376, 0.0, 0.0, 0.0, 0.0, -0.15617376, 0.0]</pre>
+                    </details>
+                  </details>
+                </article>
+              </div>
+            </details>
+    <h2>Output</h2>
+    <div class="panel" style="padding:16px">
+      <p><strong>Vector store:</strong> <code>C:\Users\vasudha.varshney\Documents\Agentic_workspace\tryingCodex\output\vector_store.json</code></p>
+      <p>All chunk metadata, embeddings, and enrichment-cache entries are stored in this single JSON file.</p>
+      <p class="note">Embeddings are deterministic demonstration vectors. ACL values are displayed as metadata and are not enforced by this POC.</p>
+    </div>
+    <footer>Generated locally by the Multi-source Data Normalizer POC.</footer>
+  </main>
+</body>
+</html>
